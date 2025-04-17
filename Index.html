@@ -1,73 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charest="UTF-8">
-<meta name="viewport" content="width-device-width,initial-scale=1.0">  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-    <title>HEART</title>
-  <style>
-      body{
-          height: 100vh;
-          width: 100%;
-          background-color:white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          animation:bc 5sx infinite linear;
-          overflow: hidden;
-    font-family:"Sofia", sans-serif;
-      }
-      .heart{
-          color:deeppink;
-          font-size: 30rem;
-          animation:beat 2s infinite linear;
-        position: relative;*/
-          text-shadow: 5px 5px 50px deeppink;
-          perspective: 300px;
-          transition: transform .2s;          
-      }
-      
-      @keyframes beat{
-      from{transform:  rotateY(0)}
-          to{transform:  rotateY(360deg) }
-      }
-       
-      .heart:hover{
-          backface-visibility: hidden;
-          transform:scale(1.2);
-      }
-      body:hover{
-          background-image: url((https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNXOXslus9Em2G-ubKTWNt_14OoTMea4-tBw&s);
-          background-color: hotpink;
-      }
-      .heart:hover .box{
-          display:block;
-          background-color: pink;
-          
-        
-      }
-      .box{ display: ;
-      position: fixed;
-      top: 20px;
-      left: 10%;
-    color: white;
-         
-         }
-      @media screen and (max-width:320px){
-          body{font-size:20px;
-          background-color: black;}     
-      }
-    </style>
-    
-    </head> 
-    
-    <body>
-    
-        <div class="heart">
-            &#9829;
-        </div>
-    
-        
-    <div class="box"> <h3>Dear INSHA</h3><p class="box1">Wishing the happiest birthday to my soulmate and best friend. Every moment with you is a gift, and I look forward to creating more memories together.</div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <title>Birthday Surprise</title>
+    <style>
+        :root {
+            --primary: #ffb6c1;
+            --secondary: #f8c8dc;
+            --accent: #77dd77;
+            --text: #696969;
+        }
 
-    </body>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            background-color: #fff0f5;
+            overflow: hidden;
+            font-family: "Sofia", sans-serif;
+        }
+
+        .login-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 240, 245, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .login-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .heart-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .heart {
+            color: var(--primary);
+            font-size: clamp(8rem, 20vw, 30rem);
+            animation: beat 1s infinite;
+            cursor: pointer;
+            text-shadow: 0 0 20px rgba(255,182,193,0.3);
+            margin-top: 20vh;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .message-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            max-width: 90%;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.5s;
+            z-index: 2;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+
+        .tulip {
+            position: fixed;
+            font-size: 2rem;
+            animation: float 6s linear infinite;
+            opacity: 0.9;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(-100vh) rotate(-360deg); }
+            100% { transform: translateY(100vh) rotate(0deg); }
+        }
+
+        .final-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff0f5;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .final-page.show {
+            display: flex;
+        }
+
+        .cake-container {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .cake {
+            font-size: 8rem;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.2));
+        }
+
+        .final-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        @media (max-width: 768px) {
+            .heart {
+                font-size: 15rem;
+            }
+            .message-box {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heart {
+                font-size: 10rem;
+            }
+            .login-box {
+                width: 90%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2 style="color: var(--text); margin-bottom: 1rem;">Enter Your Name</h2>
+            <input type="text" id="userName" placeholder="Your name...">
+            <button class="message-button" onclick="startExperience()">Begin Magic</button>
+        </div>
+    </div>
+
+    <div class="heart-container">
+        <div class="heart">&#9829;</div>
+        <div class="message-box">
+            <h3 style="color: var(--text);">Dear <span id="nameDisplay"></span></h3>
+            <p class="message-text" style="color: var(--text); margin: 1rem 0;"></p>
+            <button class="message-button" onclick="changeMessage()">Next Wish 🌸</button>
+        </div>
+    </div>
+
+    <div class="final-page">
+        <div class="final-message">
+            <h2 style="color: var(--text);">Thank you for celebrating with us!</h2>
+            <p style="color: var(--text); margin-top: 1rem;">Wishing you endless joy and happiness!</p>
+        </div>
+        <div class="cake-container">
+            <div class="cake">🎂</div>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "Your smile lights up the world! Happy Birthday!",
+            "May your day blossom with joy and love!",
+            "Celebrating the wonderful person you are!",
+            "Another year of amazing adventures begins!",
+            "You make the world a better place every day!"
+        ];
+
+        let currentMessage = 0;
+
+        function startExperience() {
+            const name = document.getElementById('userName').value;
+            if (name.trim()) {
+                document.querySelector('.login-container').remove();
+                document.querySelector('.heart-container').style.display = 'flex';
+                document.getElementById('nameDisplay').textContent = name;
+                document.querySelector('.message-text').textContent = messages[0];
+                document.querySelector('.message-box').classList.add('show');
+                startTulips();
+            }
+        }
+
+        function changeMessage() {
+            currentMessage++;
+            if(currentMessage >= messages.length) {
+                endExperience();
+                return;
+            }
+            
+            const messageElement = document.querySelector('.message-text');
+            messageElement.style.opacity = 0;
+            setTimeout(() => {
+                messageElement.textContent = messages[currentMessage];
+                messageElement.style.opacity = 1;
+            }, 300);
+        }
+
+        function endExperience() {
+            document.querySelector('.heart-container').style.display = 'none';
+            document.querySelector('.final-page').classList.add('show');
+            createTulipStorm();
+        }
+
+        function startTulips() {
+            setInterval(() => {
+                createTulip();
+            }, 1500);
+        }
+
+        function createTulip() {
+            const tulip = document.createElement('div');
+            tulip.className = 'tulip';
+            tulip.innerHTML = '🌷';
+            tulip.style.left = Math.random() * 100 + 'vw';
+            tulip.style.fontSize = Math.random() * 30 + 20 + 'px';
+            tulip.style.animationDuration = Math.random() * 3 + 5 + 's';
+            document.body.appendChild(tulip);
+            setTimeout(() => tulip.remove(), 8000);
+        }
+
+        function createTulipStorm() {
+            for(let i = 0; i < 30; i++) {
+                setTimeout(() => createTulip(), i * 100);
+            }
+        }
+    </script>
+</body>
 </html>
